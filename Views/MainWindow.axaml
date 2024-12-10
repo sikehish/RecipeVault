@@ -1,0 +1,32 @@
+<Window x:Class="RecipeManager.Views.MainWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModels="clr-namespace:RecipeManager.ViewModels;assembly=RecipeManager"
+        x:DataType="viewModels:MainWindowViewModel">
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel />
+    </Window.DataContext>
+
+    <StackPanel>
+        <!-- Textboxes for Recipe Input -->
+        <TextBox Watermark="Enter recipe name..." Text="{Binding NewRecipe.Name}" />
+        <TextBox Watermark="Enter ingredients..." Text="{Binding NewRecipe.Ingredients}" />
+        <TextBox Watermark="Enter instructions..." Text="{Binding NewRecipe.Instructions}" />
+
+        <!-- Button to Add Recipe -->
+        <Button Content="Add Recipe" Command="{Binding AddRecipeCommand}" />
+
+        <!-- List of Recipes -->
+        <ItemsControl ItemsSource="{Binding Recipes}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="{Binding Ingredients}" />
+                        <TextBlock Text="{Binding Instructions}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</Window>
