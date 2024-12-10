@@ -191,3 +191,4 @@
 /home/sikehish/CodeFiles/RecipeManager/obj/Debug/net8.0/RecipeManager.csproj.CopyComplete
 /home/sikehish/CodeFiles/RecipeManager/obj/Debug/net8.0/RecipeManager.genruntimeconfig.cache
 /home/sikehish/CodeFiles/RecipeManager/obj/Debug/net8.0/ref/RecipeManager.dll
+/home/sikehish/CodeFiles/RecipeManager/obj/Debug/net8.0/RecipeManager.sourcelink.json

@@ -2,31 +2,105 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewModels="clr-namespace:RecipeManager.ViewModels;assembly=RecipeManager"
-        x:DataType="viewModels:MainWindowViewModel">
+        x:DataType="viewModels:MainWindowViewModel"
+        Title="Recipe Manager"
+        Width="600" Height="500" MinWidth="400" MinHeight="400"
+        Background="#F3F4F6">
+
     <Window.DataContext>
         <viewModels:MainWindowViewModel />
     </Window.DataContext>
 
-    <StackPanel>
-        <!-- Textboxes for Recipe Input -->
-        <TextBox Watermark="Enter recipe name..." Text="{Binding NewRecipe.Name}" />
-        <TextBox Watermark="Enter ingredients..." Text="{Binding NewRecipe.Ingredients}" />
-        <TextBox Watermark="Enter instructions..." Text="{Binding NewRecipe.Instructions}" />
+    <!-- Wrap everything inside a Border to provide padding -->
+    <Border Padding="20" Background="#F3F4F6" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="12">
+        <StackPanel Spacing="25" HorizontalAlignment="Center" VerticalAlignment="Top">
 
-        <!-- Button to Add Recipe -->
-        <Button Content="Add Recipe" Command="{Binding AddRecipeCommand}" />
+            <!-- Heading -->
+            <TextBlock Text="Recipe Manager" FontSize="32" FontWeight="Bold" Foreground="#4CAF50" HorizontalAlignment="Center" Margin="0,20" />
 
-        <!-- List of Recipes -->
-        <ItemsControl ItemsSource="{Binding Recipes}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}" />
-                        <TextBlock Text="{Binding Ingredients}" />
-                        <TextBlock Text="{Binding Instructions}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </StackPanel>
+            <!-- Recipe Name Input -->
+            <Border Background="#FFFFFF" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="8">
+                <TextBox Watermark="Enter Recipe Name" Text="{Binding NewRecipe.Name}" 
+                         Background="Transparent" Foreground="#333333" FontSize="16" 
+                         HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="12">
+                    <TextBox.Styles>
+                        <Style Selector="TextBox:focus">
+                            <Setter Property="Background" Value="#e8f5e9"/>
+                            <Setter Property="BorderBrush" Value="#4CAF50"/>
+                        </Style>
+                    </TextBox.Styles>
+                </TextBox>
+            </Border>
+
+            <!-- Ingredients Input -->
+            <Border Background="#FFFFFF" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="8">
+                <TextBox Watermark="Enter Ingredients" Text="{Binding NewRecipe.Ingredients}" 
+                         Background="Transparent" Foreground="#333333" FontSize="16" 
+                         HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="12">
+                    <TextBox.Styles>
+                        <Style Selector="TextBox:focus">
+                            <Setter Property="Background" Value="#e8f5e9"/>
+                            <Setter Property="BorderBrush" Value="#4CAF50"/>
+                        </Style>
+                    </TextBox.Styles>
+                </TextBox>
+            </Border>
+
+            <!-- Instructions Input -->
+            <Border Background="#FFFFFF" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="8">
+                <TextBox Watermark="Enter Instructions" Text="{Binding NewRecipe.Instructions}" 
+                         Background="Transparent" Foreground="#333333" FontSize="16" 
+                         HorizontalAlignment="Stretch" VerticalAlignment="Center" Padding="12">
+                    <TextBox.Styles>
+                        <Style Selector="TextBox:focus">
+                            <Setter Property="Background" Value="#e8f5e9"/>
+                            <Setter Property="BorderBrush" Value="#4CAF50"/>
+                        </Style>
+                    </TextBox.Styles>
+                </TextBox>
+            </Border>
+
+            <!-- Add Recipe Button -->
+            <Button Content="Add Recipe" Command="{Binding AddRecipeCommand}" 
+                    Background="#4CAF50" Foreground="White" FontSize="18" FontWeight="Bold"
+                    Padding="16" BorderBrush="#4CAF50" BorderThickness="2" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Center" CornerRadius="8">
+                <Button.Styles>
+                    <Style Selector="Button">
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Style>
+                    <Style Selector="Button:hover">
+                        <Setter Property="Background" Value="#388E3C"/>
+                        <Setter Property="BorderBrush" Value="#388E3C"/>
+                    </Style>
+                    <Style Selector="Button:pressed">
+                        <Setter Property="Background" Value="#2C6B2F"/>
+                        <Setter Property="BorderBrush" Value="#2C6B2F"/>
+                    </Style>
+                </Button.Styles>
+            </Button>
+
+            <!-- Recipes List Title -->
+            <TextBlock Text="Your Recipes" FontSize="22" FontWeight="Bold" Foreground="#333333" HorizontalAlignment="Center" Margin="0,30" />
+
+            <!-- Recipes List -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Recipes}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#FFFFFF" Padding="15" Margin="0,10,0,10" 
+                                    BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="10">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}" FontSize="20" FontWeight="Bold" Foreground="#333333"/>
+                                    <TextBlock Text="{Binding Ingredients}" FontSize="14" Foreground="#666666" />
+                                    <TextBlock Text="{Binding Instructions}" FontSize="14" Foreground="#666666" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+        </StackPanel>
+    </Border>
 </Window>
